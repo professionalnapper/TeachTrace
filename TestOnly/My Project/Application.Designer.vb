@@ -31,7 +31,7 @@ Namespace My
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = New Form1() ' Create an instance of Form1
+            Me.MainForm = New Form4() ' Create an instance of Form1
         End Sub
     End Class
 End Namespace

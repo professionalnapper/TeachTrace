@@ -15,6 +15,7 @@ Imports System.Security.Cryptography.X509Certificates
 Imports System.Text
 Imports System.Threading
 Imports System.Threading.Tasks
+Imports System.IO
 Imports System.Windows.Forms
 Imports System.Xml.Linq
 Imports Google.Apis.Util.Store
@@ -23,13 +24,55 @@ Imports Excel = Microsoft.Office.Interop.Excel
 Imports DocumentFormat.OpenXml.Spreadsheet
 
 Public Class Form1
+    Private WithEvents syncTimer As System.Windows.Forms.Timer
+    Private ReadOnly pendingDataPath As String = Path.Combine(Application.StartupPath, "pending_uploads.csv")
+    Private isSyncing As Boolean = False
+    Private lastConnectionStatus As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Form initialization logic if needed
+        InitializeTimer()
+        CheckAndSyncPendingData()
     End Sub
 
-    ' Button click event to add data
-    Private Sub AddData_Click(sender As Object, e As EventArgs) Handles AddData.Click
+    Private Sub InitializeTimer()
+        syncTimer = New System.Windows.Forms.Timer With {
+            .Interval = 1000, ' Check every second
+            .Enabled = True
+        }
+    End Sub
+
+    Private Sub InitializeNetworkMonitoring()
+        AddHandler System.Net.NetworkInformation.NetworkChange.NetworkAvailabilityChanged,
+            AddressOf NetworkAvailabilityChanged
+    End Sub
+
+    Private Sub NetworkAvailabilityChanged(sender As Object, e As System.Net.NetworkInformation.NetworkAvailabilityEventArgs)
+        If e.IsAvailable Then
+            CheckAndSyncPendingData()
+        End If
+    End Sub
+
+    Private Async Sub CheckAndSyncPendingData()
+        If isSyncing OrElse Not File.Exists(pendingDataPath) Then Return
+
+        Try
+            isSyncing = True
+            Dim currentConnectionStatus = Await IsInternetAvailableAsync()
+
+            ' Check if connection status changed from offline to online
+            If currentConnectionStatus AndAlso Not lastConnectionStatus Then
+                SyncPendingData()
+            End If
+
+            lastConnectionStatus = currentConnectionStatus
+        Finally
+            isSyncing = False
+        End Try
+    End Sub
+
+    Private Async Sub AddData_Click(sender As Object, e As EventArgs) Handles AddData.Click
+        If Not ValidateInputs() Then Return
+
         Dim name As String = TBox_Name.Text
         Dim surname As String = TBox_Surname.Text
         Dim age As String = TBox_Age.Text
@@ -37,20 +80,115 @@ Public Class Form1
         Dim registrationDate As String = DateTime.Now.ToString("yyyy-MM-dd")
 
         Try
-            AddDataToGoogleSheets(name, surname, age, registrationTime, registrationDate)
             AddDataToExcel(name, surname, age, registrationTime, registrationDate)
 
-            ' Optionally, show success message
-            MessageBox.Show("Data added successfully!")
+            If Await IsInternetAvailableAsync() Then
+                Try
+                    AddDataToGoogleSheets(name, surname, age, registrationTime, registrationDate)
+                    ShowStatusMessage("Data saved online successfully!", MessageBoxIcon.Information)
+                Catch ex As Exception
+                    HandleOfflineSave(name, surname, age, registrationTime, registrationDate)
+                End Try
+            Else
+                HandleOfflineSave(name, surname, age, registrationTime, registrationDate)
+            End If
 
-            ' Clear TextBoxes after adding data
-            TBox_Name.Clear()
-            TBox_Surname.Clear()
-            TBox_Age.Clear()
+            ClearInputFields()
+        Catch ex As Exception
+            ShowStatusMessage($"Error: {ex.Message}", MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Function ValidateInputs() As Boolean
+        If String.IsNullOrWhiteSpace(TBox_Name.Text) OrElse
+           String.IsNullOrWhiteSpace(TBox_Surname.Text) OrElse
+           String.IsNullOrWhiteSpace(TBox_Age.Text) Then
+            ShowStatusMessage("Please fill in all fields.", MessageBoxIcon.Warning)
+            Return False
+        End If
+        Return True
+    End Function
+
+    Private Sub HandleOfflineSave(name As String, surname As String, age As String,
+                                registrationTime As String, registrationDate As String)
+        SavePendingOnlineData(name, surname, age, registrationTime, registrationDate)
+        ShowStatusMessage("Data saved locally. Will sync when online.", MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub ShowStatusMessage(message As String, icon As MessageBoxIcon)
+        MessageBox.Show(message, "Status", MessageBoxButtons.OK, icon)
+    End Sub
+
+    Private Sub SavePendingOnlineData(name As String, surname As String, age As String,
+                                    registrationTime As String, registrationDate As String)
+        Try
+            Dim dataLine As String = $"{name},{surname},{age},{registrationTime},{registrationDate}"
+            File.AppendAllText(pendingDataPath, dataLine & Environment.NewLine)
+        Catch ex As Exception
+            ShowStatusMessage($"Failed to save pending data: {ex.Message}", MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub SyncPendingData()
+        If Not File.Exists(pendingDataPath) Then Return
+
+        Try
+            Dim pendingLines = File.ReadAllLines(pendingDataPath).ToList()
+            If pendingLines.Count = 0 Then Return
+
+            Dim failedUploads As New List(Of String)
+            Dim syncedCount As Integer = 0
+
+            For Each line In pendingLines
+                Try
+                    Dim fields = line.Split(","c)
+                    If fields.Length = 5 Then
+                        AddDataToGoogleSheets(fields(0), fields(1), fields(2), fields(3), fields(4))
+                        syncedCount += 1
+                    End If
+                Catch ex As Exception
+                    failedUploads.Add(line)
+                End Try
+            Next
+
+            UpdatePendingFile(failedUploads)
+            If syncedCount > 0 Then
+                ShowStatusMessage($"Synced {syncedCount} records to Google Sheets.", MessageBoxIcon.Information)
+            End If
 
         Catch ex As Exception
-            MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ShowStatusMessage($"Sync error: {ex.Message}", MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub UpdatePendingFile(failedUploads As List(Of String))
+        If failedUploads.Count = 0 Then
+            File.Delete(pendingDataPath)
+        Else
+            File.WriteAllLines(pendingDataPath, failedUploads)
+        End If
+    End Sub
+
+    Private Async Function IsInternetAvailableAsync() As Task(Of Boolean)
+        Try
+            Using client = New Net.Http.HttpClient()
+                client.Timeout = TimeSpan.FromSeconds(2)
+                Dim response = Await client.GetAsync("http://www.google.com")
+                Return response.IsSuccessStatusCode
+            End Using
+        Catch
+            Return False
+        End Try
+    End Function
+
+    Private Sub syncTimer_Tick(sender As Object, e As EventArgs) Handles syncTimer.Tick
+        CheckAndSyncPendingData()
+    End Sub
+
+    Private Sub ClearInputFields()
+        TBox_Name.Clear()
+        TBox_Surname.Clear()
+        TBox_Age.Clear()
     End Sub
 
     Private Sub AddDataToGoogleSheets(name As String, surname As String, age As String, registrationTime As String, registrationDate As String)
