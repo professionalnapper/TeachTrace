@@ -324,8 +324,13 @@ Public Class Form1
     End Sub
 
     Private Sub UpdateData_Click(sender As Object, e As EventArgs) Handles UpdateData.Click
-        Dim form As New Form2()
-        form.ShowDialog()
+        'Dim form As New Form5()
+        'Form.ShowDialog()
+        'Me.Hide()
+
+        Dim form5 As New Form5()
+        form5.Show()
+        Me.Hide()
     End Sub
 
 End Class

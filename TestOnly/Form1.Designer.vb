@@ -93,9 +93,9 @@ Partial Class Form1
         ' 
         UpdateData.Location = New Point(414, 303)
         UpdateData.Name = "UpdateData"
-        UpdateData.Size = New Size(94, 29)
+        UpdateData.Size = New Size(187, 29)
         UpdateData.TabIndex = 7
-        UpdateData.Text = "Update Data"
+        UpdateData.Text = "Proceed to Dashboard"
         UpdateData.UseVisualStyleBackColor = True
         ' 
         ' Form1
