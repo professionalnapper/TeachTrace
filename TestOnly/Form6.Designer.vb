@@ -28,10 +28,12 @@ Partial Class Form6
         Label3 = New Label()
         ComboBox2 = New ComboBox()
         DataGridView1 = New DataGridView()
-        ID = New DataGridViewTextBoxColumn()
-        StudentName = New DataGridViewTextBoxColumn()
-        ClassType = New DataGridViewTextBoxColumn()
         Button1 = New Button()
+        NameColumn = New DataGridViewTextBoxColumn()
+        SurnameColumn = New DataGridViewTextBoxColumn()
+        AgeColumn = New DataGridViewTextBoxColumn()
+        TimeInColumn = New DataGridViewTextBoxColumn()
+        DateInColumn = New DataGridViewTextBoxColumn()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -86,33 +88,12 @@ Partial Class Form6
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {ID, StudentName, ClassType})
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {NameColumn, SurnameColumn, AgeColumn, TimeInColumn, DateInColumn})
         DataGridView1.Location = New Point(66, 172)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
         DataGridView1.Size = New Size(653, 195)
         DataGridView1.TabIndex = 5
-        ' 
-        ' ID
-        ' 
-        ID.HeaderText = "ID"
-        ID.MinimumWidth = 6
-        ID.Name = "ID"
-        ID.Width = 200
-        ' 
-        ' StudentName
-        ' 
-        StudentName.HeaderText = "Name"
-        StudentName.MinimumWidth = 6
-        StudentName.Name = "StudentName"
-        StudentName.Width = 200
-        ' 
-        ' ClassType
-        ' 
-        ClassType.HeaderText = "Class"
-        ClassType.MinimumWidth = 6
-        ClassType.Name = "ClassType"
-        ClassType.Width = 200
         ' 
         ' Button1
         ' 
@@ -122,6 +103,41 @@ Partial Class Form6
         Button1.TabIndex = 6
         Button1.Text = "Back to Dashboard"
         Button1.UseVisualStyleBackColor = True
+        ' 
+        ' NameColumn
+        ' 
+        NameColumn.HeaderText = "Name"
+        NameColumn.MinimumWidth = 6
+        NameColumn.Name = "NameColumn"
+        NameColumn.Width = 125
+        ' 
+        ' SurnameColumn
+        ' 
+        SurnameColumn.HeaderText = "Surname"
+        SurnameColumn.MinimumWidth = 6
+        SurnameColumn.Name = "SurnameColumn"
+        SurnameColumn.Width = 125
+        ' 
+        ' AgeColumn
+        ' 
+        AgeColumn.HeaderText = "Age"
+        AgeColumn.MinimumWidth = 6
+        AgeColumn.Name = "AgeColumn"
+        AgeColumn.Width = 125
+        ' 
+        ' TimeInColumn
+        ' 
+        TimeInColumn.HeaderText = "Time-in"
+        TimeInColumn.MinimumWidth = 6
+        TimeInColumn.Name = "TimeInColumn"
+        TimeInColumn.Width = 125
+        ' 
+        ' DateInColumn
+        ' 
+        DateInColumn.HeaderText = "Date"
+        DateInColumn.MinimumWidth = 6
+        DateInColumn.Name = "DateInColumn"
+        DateInColumn.Width = 125
         ' 
         ' Form6
         ' 
@@ -135,7 +151,7 @@ Partial Class Form6
         Controls.Add(ComboBox1)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        Text = "Form6"
+        'Text = "Form6"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -147,8 +163,10 @@ Partial Class Form6
     Friend WithEvents Label3 As Label
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents ID As DataGridViewTextBoxColumn
-    Friend WithEvents StudentName As DataGridViewTextBoxColumn
-    Friend WithEvents ClassType As DataGridViewTextBoxColumn
     Friend WithEvents Button1 As Button
+    Friend WithEvents NameColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SurnameColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AgeColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TimeInColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DateInColumn As DataGridViewTextBoxColumn
 End Class

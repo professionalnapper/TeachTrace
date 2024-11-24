@@ -80,8 +80,26 @@ Public Class Form1
         Dim registrationDate As String = DateTime.Now.ToString("yyyy-MM-dd")
 
         Try
+            ' Add data to Excel
             AddDataToExcel(name, surname, age, registrationTime, registrationDate)
 
+            ' Update Form6 if it's open
+            For Each form In Application.OpenForms
+                If TypeOf form Is Form6 Then
+                    DirectCast(form, Form6).UpdateDataGridView()
+                    Exit For
+                End If
+            Next
+
+            ' Update Form7 if it's open
+            For Each form In Application.OpenForms
+                If TypeOf form Is Form7 Then
+                    DirectCast(form, Form7).UpdateDataGridView()  ' Make sure Form7 has this method
+                    Exit For
+                End If
+            Next
+
+            ' Handle online/offline sync
             If Await IsInternetAvailableAsync() Then
                 Try
                     AddDataToGoogleSheets(name, surname, age, registrationTime, registrationDate)
