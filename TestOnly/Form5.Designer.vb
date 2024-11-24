@@ -26,6 +26,7 @@ Partial Class Form5
         Button1 = New Button()
         Button2 = New Button()
         Button3 = New Button()
+        Button4 = New Button()
         SuspendLayout()
         ' 
         ' Label1
@@ -65,11 +66,21 @@ Partial Class Form5
         Button3.Text = "Monitor Attendance"
         Button3.UseVisualStyleBackColor = True
         ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(234, 367)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(299, 37)
+        Button4.TabIndex = 4
+        Button4.Text = "Back"
+        Button4.UseVisualStyleBackColor = True
+        ' 
         ' Form5
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(Button4)
         Controls.Add(Button3)
         Controls.Add(Button2)
         Controls.Add(Button1)
@@ -84,4 +95,5 @@ Partial Class Form5
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
 End Class
