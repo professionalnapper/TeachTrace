@@ -36,17 +36,18 @@ Partial Class Form7
         AgeColumn = New DataGridViewTextBoxColumn()
         TimeInColumn = New DataGridViewTextBoxColumn()
         DateInColumn = New DataGridViewTextBoxColumn()
+        ClassType = New DataGridViewTextBoxColumn()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {NameColumn, SurnameColumn, AgeColumn, TimeInColumn, DateInColumn})
-        DataGridView1.Location = New Point(45, 289)
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {NameColumn, SurnameColumn, AgeColumn, TimeInColumn, DateInColumn, ClassType})
+        DataGridView1.Location = New Point(38, 289)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(678, 149)
+        DataGridView1.Size = New Size(728, 149)
         DataGridView1.TabIndex = 0
         ' 
         ' Label1
@@ -143,7 +144,7 @@ Partial Class Form7
         AgeColumn.HeaderText = "Age"
         AgeColumn.MinimumWidth = 6
         AgeColumn.Name = "AgeColumn"
-        AgeColumn.Width = 125
+        AgeColumn.Width = 50
         ' 
         ' TimeInColumn
         ' 
@@ -158,6 +159,13 @@ Partial Class Form7
         DateInColumn.MinimumWidth = 6
         DateInColumn.Name = "DateInColumn"
         DateInColumn.Width = 125
+        ' 
+        ' ClassType
+        ' 
+        ClassType.HeaderText = "Class"
+        ClassType.MinimumWidth = 6
+        ClassType.Name = "ClassType"
+        ClassType.Width = 125
         ' 
         ' Form7
         ' 
@@ -194,4 +202,5 @@ Partial Class Form7
     Friend WithEvents AgeColumn As DataGridViewTextBoxColumn
     Friend WithEvents TimeInColumn As DataGridViewTextBoxColumn
     Friend WithEvents DateInColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ClassType As DataGridViewTextBoxColumn
 End Class

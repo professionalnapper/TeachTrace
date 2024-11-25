@@ -27,7 +27,6 @@ Public Class Form6
     Public Sub UpdateDataGridView()
         Try
             DataGridView1.Rows.Clear()
-
             ' Read data from Excel file
             Dim excelApp As New Excel.Application()
             Dim workbook As Excel.Workbook = excelApp.Workbooks.Open("C:\Users\quiam\Downloads\Example.xlsx")
@@ -39,13 +38,48 @@ Public Class Form6
                 Dim name As String = worksheet.Cells(i, 1).Value?.ToString()
                 Dim surname As String = worksheet.Cells(i, 2).Value?.ToString()
                 Dim age As String = worksheet.Cells(i, 3).Value?.ToString()
-                Dim regTime As String = worksheet.Cells(i, 4).Value?.ToString()
-                Dim regDate As String = worksheet.Cells(i, 5).Value?.ToString()
+
+                ' Format the time value with AM/PM
+                Dim regTime As String = ""
+                Dim timeValue = worksheet.Cells(i, 4).Value
+                If timeValue IsNot Nothing Then
+                    If IsNumeric(timeValue) Then
+                        ' Convert Excel time (decimal) to DateTime
+                        Dim dateTime As DateTime = DateTime.FromOADate(Convert.ToDouble(timeValue))
+                        ' Format as time with AM/PM
+                        regTime = dateTime.ToString("hh:mm:ss tt")
+                    Else
+                        ' If it's already a string, try to parse it
+                        Dim parsedTime As DateTime
+                        If DateTime.TryParse(timeValue.ToString(), parsedTime) Then
+                            regTime = parsedTime.ToString("hh:mm:ss tt")
+                        Else
+                            regTime = timeValue.ToString()
+                        End If
+                    End If
+                End If
+
+                ' Format the date value (date only)
+                Dim regDate As String = ""
+                Dim dateValue = worksheet.Cells(i, 5).Value
+                If dateValue IsNot Nothing Then
+                    Dim parsedDate As DateTime
+                    If DateTime.TryParse(dateValue.ToString(), parsedDate) Then
+                        regDate = parsedDate.ToString("MM/dd/yyyy")
+                    Else
+                        regDate = dateValue.ToString()
+                    End If
+                End If
 
                 If Not String.IsNullOrEmpty(name) Then
                     DataGridView1.Rows.Add(name, surname, age, regTime, regDate)
                 End If
             Next
+
+            ' Set the format for the time column (assuming it's column index 3)
+            DataGridView1.Columns(3).DefaultCellStyle.Format = "hh:mm:ss tt"
+            ' Set the format for the date column (assuming it's column index 4)
+            DataGridView1.Columns(4).DefaultCellStyle.Format = "MM/dd/yyyy"
 
             ' Clean up Excel objects
             workbook.Close()
@@ -53,7 +87,6 @@ Public Class Form6
             ReleaseObject(worksheet)
             ReleaseObject(workbook)
             ReleaseObject(excelApp)
-
         Catch ex As Exception
             MessageBox.Show($"Error updating data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

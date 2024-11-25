@@ -34,6 +34,7 @@ Partial Class Form6
         AgeColumn = New DataGridViewTextBoxColumn()
         TimeInColumn = New DataGridViewTextBoxColumn()
         DateInColumn = New DataGridViewTextBoxColumn()
+        ClassType = New DataGridViewTextBoxColumn()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -88,11 +89,11 @@ Partial Class Form6
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {NameColumn, SurnameColumn, AgeColumn, TimeInColumn, DateInColumn})
-        DataGridView1.Location = New Point(66, 172)
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {NameColumn, SurnameColumn, AgeColumn, TimeInColumn, DateInColumn, ClassType})
+        DataGridView1.Location = New Point(31, 165)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(653, 195)
+        DataGridView1.Size = New Size(727, 195)
         DataGridView1.TabIndex = 5
         ' 
         ' Button1
@@ -123,7 +124,7 @@ Partial Class Form6
         AgeColumn.HeaderText = "Age"
         AgeColumn.MinimumWidth = 6
         AgeColumn.Name = "AgeColumn"
-        AgeColumn.Width = 125
+        AgeColumn.Width = 50
         ' 
         ' TimeInColumn
         ' 
@@ -139,9 +140,16 @@ Partial Class Form6
         DateInColumn.Name = "DateInColumn"
         DateInColumn.Width = 125
         ' 
+        ' ClassType
+        ' 
+        ClassType.HeaderText = "Class"
+        ClassType.MinimumWidth = 6
+        ClassType.Name = "ClassType"
+        ClassType.Width = 125
+        ' 
         ' Form6
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
         Controls.Add(Button1)
@@ -151,7 +159,7 @@ Partial Class Form6
         Controls.Add(ComboBox1)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        'Text = "Form6"
+        Name = "Form6"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -169,4 +177,5 @@ Partial Class Form6
     Friend WithEvents AgeColumn As DataGridViewTextBoxColumn
     Friend WithEvents TimeInColumn As DataGridViewTextBoxColumn
     Friend WithEvents DateInColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ClassType As DataGridViewTextBoxColumn
 End Class

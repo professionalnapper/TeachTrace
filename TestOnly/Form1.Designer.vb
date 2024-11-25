@@ -30,6 +30,8 @@ Partial Class Form1
         TBox_Age = New TextBox()
         AddData = New Button()
         UpdateData = New Button()
+        ClassType = New Label()
+        TBox_Class = New TextBox()
         SuspendLayout()
         ' 
         ' lblName
@@ -98,11 +100,29 @@ Partial Class Form1
         UpdateData.Text = "Proceed to Dashboard"
         UpdateData.UseVisualStyleBackColor = True
         ' 
+        ' ClassType
+        ' 
+        ClassType.AutoSize = True
+        ClassType.Location = New Point(121, 245)
+        ClassType.Name = "ClassType"
+        ClassType.Size = New Size(42, 20)
+        ClassType.TabIndex = 8
+        ClassType.Text = "Class"
+        ' 
+        ' TBox_Class
+        ' 
+        TBox_Class.Location = New Point(279, 245)
+        TBox_Class.Name = "TBox_Class"
+        TBox_Class.Size = New Size(125, 27)
+        TBox_Class.TabIndex = 9
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(TBox_Class)
+        Controls.Add(ClassType)
         Controls.Add(UpdateData)
         Controls.Add(AddData)
         Controls.Add(TBox_Age)
@@ -125,5 +145,7 @@ Partial Class Form1
     Friend WithEvents TBox_Age As TextBox
     Friend WithEvents AddData As Button
     Friend WithEvents UpdateData As Button
+    Friend WithEvents ClassType As Label
+    Friend WithEvents TBox_Class As TextBox
 
 End Class
