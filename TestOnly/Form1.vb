@@ -9,6 +9,7 @@ Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Data
 Imports System.Drawing
+Imports System.Diagnostics
 Imports System.Linq
 Imports System.Net
 Imports System.Security.Cryptography.X509Certificates
@@ -16,6 +17,7 @@ Imports System.Text
 Imports System.Threading
 Imports System.Threading.Tasks
 Imports System.IO
+Imports System.IO.Ports
 Imports System.Windows.Forms
 Imports System.Xml.Linq
 Imports Google.Apis.Util.Store
@@ -29,9 +31,120 @@ Public Class Form1
     Private isSyncing As Boolean = False
     Private lastConnectionStatus As Boolean = False
 
+    ' Serial Port additions
+    ' Private WithEvents serialPort1 As New System.IO.Ports.SerialPort(components)
+
+    Private WithEvents serialPort1 As System.IO.Ports.SerialPort
+    Private statusLabel As Label
+    Private buffer As String = ""
+    Private isSerialConnected As Boolean = False
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Initialize status label first
+        statusLabel = New Label()
+        statusLabel.Name = "lblSerialStatus"
+        statusLabel.AutoSize = True
+        statusLabel.Location = New Point(10, Me.Height - 50)
+        Me.Controls.Add(statusLabel)
+
+        ' Initialize SerialPort
+        serialPort1 = New System.IO.Ports.SerialPort()
+
+        ' Rest of initialization
         InitializeTimer()
+        InitializeSerialPort()
         CheckAndSyncPendingData()
+        UpdateSerialStatus()
+    End Sub
+
+
+    Private Sub InitializeSerialPort()
+        Try
+            ' Get available ports
+            Dim ports As String() = SerialPort.GetPortNames()
+            If ports.Length = 0 Then
+                MessageBox.Show("No serial ports found.", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' Configure serial port
+            With serialPort1
+                .PortName = ports(0) ' Default to first available port
+                .BaudRate = 9600
+                .DataBits = 8
+                .Parity = Parity.None
+                .StopBits = StopBits.One
+                .Handshake = Handshake.None
+                .ReadTimeout = 500
+                .WriteTimeout = 500
+                .DtrEnable = True
+                .RtsEnable = True
+            End With
+
+            serialPort1.Open()
+            isSerialConnected = True
+            UpdateSerialStatus()
+        Catch ex As Exception
+            MessageBox.Show($"Error initializing serial port: {ex.Message}", "Serial Port Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            isSerialConnected = False
+            UpdateSerialStatus()
+        End Try
+    End Sub
+
+
+    Private Sub UpdateSerialStatus()
+        If statusLabel IsNot Nothing Then
+            If isSerialConnected Then
+                statusLabel.Text = $"Connected to {serialPort1.PortName}"
+                statusLabel.ForeColor = System.Drawing.Color.Green
+            Else
+                statusLabel.Text = "Scanner Not Connected"
+                statusLabel.ForeColor = System.Drawing.Color.Red
+            End If
+        End If
+    End Sub
+
+    Private Sub serialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles serialPort1.DataReceived
+        Try
+            ' Read the incoming data
+            Dim incoming As String = serialPort1.ReadLine()
+
+            ' Use Invoke to safely update UI from a different thread
+            Me.Invoke(Sub()
+                          ProcessSerialData(incoming)
+                      End Sub)
+        Catch ex As Exception
+            Debug.WriteLine($"Error reading serial data: {ex.Message}")
+        End Try
+    End Sub
+
+    Private Sub ProcessSerialData(data As String)
+        Try
+            ' Expected format: "ID:123,NAME:John,SURNAME:Doe,AGE:25"
+            If data.Contains(",") Then
+                Dim parts = data.Split(","c)
+                For Each part In parts
+                    Dim keyValue = part.Split(":"c)
+                    If keyValue.Length = 2 Then
+                        Select Case keyValue(0).Trim().ToUpper()
+                            Case "NAME"
+                                TBox_Name.Text = keyValue(1).Trim()
+                            Case "SURNAME"
+                                TBox_Surname.Text = keyValue(1).Trim()
+                            Case "AGE"
+                                TBox_Age.Text = keyValue(1).Trim()
+                        End Select
+                    End If
+                Next
+
+                ' Optionally auto-save the data
+                If ValidateInputs() Then
+                    AddData_Click(Nothing, Nothing)
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"Error processing data: {ex.Message}", "Data Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub InitializeTimer()
@@ -59,7 +172,6 @@ Public Class Form1
             isSyncing = True
             Dim currentConnectionStatus = Await IsInternetAvailableAsync()
 
-            ' Check if connection status changed from offline to online
             If currentConnectionStatus AndAlso Not lastConnectionStatus Then
                 SyncPendingData()
             End If
@@ -80,10 +192,8 @@ Public Class Form1
         Dim registrationDate As String = DateTime.Now.ToString("yyyy-MM-dd")
 
         Try
-            ' Add data to Excel
             AddDataToExcel(name, surname, age, registrationTime, registrationDate)
 
-            ' Update Form6 if it's open
             For Each form In Application.OpenForms
                 If TypeOf form Is Form6 Then
                     DirectCast(form, Form6).UpdateDataGridView()
@@ -91,15 +201,13 @@ Public Class Form1
                 End If
             Next
 
-            ' Update Form7 if it's open
             For Each form In Application.OpenForms
                 If TypeOf form Is Form7 Then
-                    DirectCast(form, Form7).UpdateDataGridView()  ' Make sure Form7 has this method
+                    DirectCast(form, Form7).UpdateDataGridView()
                     Exit For
                 End If
             Next
 
-            ' Handle online/offline sync
             If Await IsInternetAvailableAsync() Then
                 Try
                     AddDataToGoogleSheets(name, surname, age, registrationTime, registrationDate)
@@ -207,6 +315,37 @@ Public Class Form1
         TBox_Name.Clear()
         TBox_Surname.Clear()
         TBox_Age.Clear()
+    End Sub
+
+    Protected Overrides Sub OnFormClosing(e As FormClosingEventArgs)
+        ' Close serial port if open
+        If serialPort1 IsNot Nothing AndAlso serialPort1.IsOpen Then
+            serialPort1.Close()
+        End If
+        MyBase.OnFormClosing(e)
+    End Sub
+
+    ' Method to send commands to Arduino if needed
+    Public Sub SendCommand(command As String)
+        Try
+            If serialPort1 IsNot Nothing AndAlso serialPort1.IsOpen Then
+                serialPort1.WriteLine(command)
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"Error sending command: {ex.Message}", "Command Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ' Add a method to reconnect serial port
+    Public Sub ReconnectSerialPort()
+        Try
+            If serialPort1.IsOpen Then
+                serialPort1.Close()
+            End If
+            InitializeSerialPort()
+        Catch ex As Exception
+            MessageBox.Show($"Error reconnecting: {ex.Message}", "Reconnection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub AddDataToGoogleSheets(name As String, surname As String, age As String, registrationTime As String, registrationDate As String)
@@ -346,10 +485,142 @@ Public Class Form1
         'Form.ShowDialog()
         'Me.Hide()
 
-        Dim form5 As New Form5()
+        Dim form5 As New Form5
         form5.Show()
-        Me.Hide()
+        Hide()
     End Sub
 
+    Private Sub TestConnection_Click(sender As Object, e As EventArgs) Handles TestConnection.Click
+        Try
+            ' Close existing connection if any
+            If serialPort1 IsNot Nothing AndAlso serialPort1.IsOpen Then
+                serialPort1.Close()
+                Threading.Thread.Sleep(1000)  ' Wait before reopening
+                isSerialConnected = False
+                UpdateSerialStatus()
+            End If
+
+            ' Get available ports
+            Dim ports As String() = SerialPort.GetPortNames()
+            If ports.Length = 0 Then
+                MessageBox.Show("No serial ports found.", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' Show port selection dialog
+            Using portDialog As New Form
+                portDialog.Text = "Select COM Port"
+                portDialog.Size = New Size(300, 200)
+                portDialog.StartPosition = FormStartPosition.CenterParent
+
+                ' Add instructions label
+                Dim label As New Label
+                label.Text = "Select the Arduino COM port:"
+                label.AutoSize = True
+                label.Location = New Point(10, 20)
+                portDialog.Controls.Add(label)
+
+                ' Add port selection combo box
+                Dim combo As New ComboBox
+                combo.Location = New Point(10, 50)
+                combo.Size = New Size(260, 25)
+                combo.DropDownStyle = ComboBoxStyle.DropDownList
+                combo.Items.AddRange(ports)
+                combo.SelectedIndex = 0
+                portDialog.Controls.Add(combo)
+
+                ' Add connection button
+                Dim btn As New Button
+                btn.Text = "Connect"
+                btn.Location = New Point(90, 100)
+                btn.Size = New Size(120, 30)
+                AddHandler btn.Click, Sub()
+                                          Try
+                                              serialPort1.PortName = combo.SelectedItem.ToString()
+                                              TestSerialConnection()
+                                              MessageBox.Show("Connection successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                              portDialog.DialogResult = DialogResult.OK
+                                          Catch ex As Exception
+                                              MessageBox.Show($"Connection failed: {ex.Message}" & vbCrLf & vbCrLf &
+                                                      "Please check:" & vbCrLf &
+                                                      "1. Arduino is properly connected" & vbCrLf &
+                                                      "2. Correct COM port is selected" & vbCrLf &
+                                                      "3. No other program is using the port",
+                                                      "Connection Error",
+                                                      MessageBoxButtons.OK,
+                                                      MessageBoxIcon.Error)
+                                          End Try
+                                      End Sub
+                portDialog.Controls.Add(btn)
+
+                If portDialog.ShowDialog() = DialogResult.OK Then
+                    InitializeTimer()
+                    CheckAndSyncPendingData()
+                End If
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show($"Connection failed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            isSerialConnected = False
+            UpdateSerialStatus()
+        End Try
+    End Sub
+
+    Private Sub TestSerialConnection()
+        Try
+            ' Close port if already open
+            If serialPort1.IsOpen Then
+                serialPort1.Close()
+                Threading.Thread.Sleep(1000)  ' Wait before reopening
+            End If
+
+            ' Configure port
+            With serialPort1
+                .BaudRate = 9600
+                .DataBits = 8
+                .Parity = Parity.None
+                .StopBits = StopBits.One
+                .ReadTimeout = 3000
+                .WriteTimeout = 3000
+                .ReceivedBytesThreshold = 1
+                .ReadBufferSize = 4096
+                .WriteBufferSize = 4096
+            End With
+
+            ' Open port
+            serialPort1.Open()
+            Threading.Thread.Sleep(2000)  ' Wait for connection to stabilize
+
+            ' Clear any existing data
+            serialPort1.DiscardInBuffer()
+            serialPort1.DiscardOutBuffer()
+
+            ' Send test command
+            serialPort1.WriteLine("TEST")
+
+            ' Wait for response
+            Dim startTime As DateTime = DateTime.Now
+            While (DateTime.Now - startTime).TotalSeconds < 3
+                If serialPort1.BytesToRead > 0 Then
+                    Dim response As String = serialPort1.ReadLine().Trim()
+                    If response = "OK" Then
+                        isSerialConnected = True
+                        UpdateSerialStatus()
+                        Return
+                    End If
+                End If
+                Threading.Thread.Sleep(100)
+                Application.DoEvents()
+            End While
+
+            Throw New Exception("No response received from device")
+
+        Catch ex As Exception
+            If serialPort1 IsNot Nothing AndAlso serialPort1.IsOpen Then
+                serialPort1.Close()
+            End If
+            MessageBox.Show("Error details: " & ex.Message, "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class
 

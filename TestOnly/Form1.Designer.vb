@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         lblName = New Label()
         Surname = New Label()
         Age = New Label()
@@ -32,6 +33,8 @@ Partial Class Form1
         UpdateData = New Button()
         ClassType = New Label()
         TBox_Class = New TextBox()
+        TestConnection = New Button()
+        serialPort1 = New System.IO.Ports.SerialPort(components)
         SuspendLayout()
         ' 
         ' lblName
@@ -116,11 +119,29 @@ Partial Class Form1
         TBox_Class.Size = New Size(125, 27)
         TBox_Class.TabIndex = 9
         ' 
+        ' TestConnection
+        ' 
+        TestConnection.Location = New Point(241, 362)
+        TestConnection.Name = "TestConnection"
+        TestConnection.Size = New Size(187, 29)
+        TestConnection.TabIndex = 10
+        TestConnection.Text = "Test Connection"
+        TestConnection.UseVisualStyleBackColor = True
+        ' 
+        ' serialPort1
+        ' 
+        serialPort1.PortName = "COM1"
+        serialPort1.BaudRate = 9600
+        serialPort1.DataBits = 8
+        serialPort1.Parity = System.IO.Ports.Parity.None
+        serialPort1.StopBits = System.IO.Ports.StopBits.One
+        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(TestConnection)
         Controls.Add(TBox_Class)
         Controls.Add(ClassType)
         Controls.Add(UpdateData)
@@ -147,5 +168,7 @@ Partial Class Form1
     Friend WithEvents UpdateData As Button
     Friend WithEvents ClassType As Label
     Friend WithEvents TBox_Class As TextBox
+    Friend WithEvents TestConnection As Button
+    Friend WithEvents serialPort As System.IO.Ports.SerialPort
 
 End Class

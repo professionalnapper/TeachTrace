@@ -31,6 +31,7 @@
     <PackageReference Include="Google.Apis.Sheets.v4" Version="1.68.0.3568" />
     <PackageReference Include="System.Data.OleDb" Version="8.0.1" />
     <PackageReference Include="System.IO.Packaging" Version="8.0.1" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
