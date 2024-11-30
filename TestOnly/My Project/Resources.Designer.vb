@@ -73,9 +73,129 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Log_In__1134_x_696_px_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (1134 x 696 px)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__1134_x_696_px___1_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (1134 x 696 px) (1)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__1134_x_696_px___2_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (1134 x 696 px) (2)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__1134_x_696_px___3_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (1134 x 696 px) (3)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__1134_x_696_px___4_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (1134 x 696 px) (4)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__1134_x_696_px___5_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (1134 x 696 px) (5)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Log_In__316_x_219_px_() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Log In (316 x 219 px)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__316_x_219_px___1_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (316 x 219 px) (1)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__316_x_219_px___2_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (316 x 219 px) (2)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__316_x_219_px___3_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (316 x 219 px) (3)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__316_x_219_px___4_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (316 x 219 px) (4)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__316_x_219_px___5_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (316 x 219 px) (5)", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Log_In__316_x_219_px___6_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Log In (316 x 219 px) (6)", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

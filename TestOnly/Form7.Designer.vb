@@ -22,7 +22,14 @@ Partial Class Form7
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form7))
         DataGridView1 = New DataGridView()
+        NameColumn = New DataGridViewTextBoxColumn()
+        SurnameColumn = New DataGridViewTextBoxColumn()
+        AgeColumn = New DataGridViewTextBoxColumn()
+        TimeInColumn = New DataGridViewTextBoxColumn()
+        DateInColumn = New DataGridViewTextBoxColumn()
+        ClassType = New DataGridViewTextBoxColumn()
         Label1 = New Label()
         Label2 = New Label()
         TextBox1 = New TextBox()
@@ -31,12 +38,6 @@ Partial Class Form7
         Label4 = New Label()
         Button1 = New Button()
         ComboBox2 = New ComboBox()
-        NameColumn = New DataGridViewTextBoxColumn()
-        SurnameColumn = New DataGridViewTextBoxColumn()
-        AgeColumn = New DataGridViewTextBoxColumn()
-        TimeInColumn = New DataGridViewTextBoxColumn()
-        DateInColumn = New DataGridViewTextBoxColumn()
-        ClassType = New DataGridViewTextBoxColumn()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -44,86 +45,11 @@ Partial Class Form7
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {NameColumn, SurnameColumn, AgeColumn, TimeInColumn, DateInColumn, ClassType})
-        DataGridView1.Location = New Point(38, 289)
+        DataGridView1.Location = New Point(158, 390)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
         DataGridView1.Size = New Size(728, 149)
         DataGridView1.TabIndex = 0
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(26, 18)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(360, 41)
-        Label1.TabIndex = 1
-        Label1.Text = "Modify Student Records"
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(38, 69)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(120, 23)
-        Label2.TabIndex = 2
-        Label2.Text = "Student Name"
-        ' 
-        ' TextBox1
-        ' 
-        TextBox1.Location = New Point(39, 101)
-        TextBox1.Multiline = True
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(290, 35)
-        TextBox1.TabIndex = 3
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(38, 153)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(48, 23)
-        Label3.TabIndex = 4
-        Label3.Text = "Class"
-        ' 
-        ' ComboBox1
-        ' 
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"Select a Class", "Class A", "Class B", "Class C"})
-        ComboBox1.Location = New Point(45, 183)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(151, 28)
-        ComboBox1.TabIndex = 5
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(45, 227)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(263, 41)
-        Label4.TabIndex = 6
-        Label4.Text = "Existing Students"
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(561, 101)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(172, 37)
-        Button1.TabIndex = 7
-        Button1.Text = "Back to Dashboard"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' ComboBox2
-        ' 
-        ComboBox2.FormattingEnabled = True
-        ComboBox2.Items.AddRange(New Object() {"Filter by Class", "Class A", "Class B", "Class C"})
-        ComboBox2.Location = New Point(561, 240)
-        ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(151, 28)
-        ComboBox2.TabIndex = 8
         ' 
         ' NameColumn
         ' 
@@ -167,11 +93,94 @@ Partial Class Form7
         ClassType.Name = "ClassType"
         ClassType.Width = 125
         ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(26, 18)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(360, 41)
+        Label1.TabIndex = 1
+        Label1.Text = "Modify Student Records"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Poppins", 10.2F)
+        Label2.Location = New Point(158, 170)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(104, 30)
+        Label2.TabIndex = 2
+        Label2.Text = "First Name"
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(159, 202)
+        TextBox1.Multiline = True
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(290, 35)
+        TextBox1.TabIndex = 3
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Poppins", 10.2F)
+        Label3.Location = New Point(158, 254)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(59, 30)
+        Label3.TabIndex = 4
+        Label3.Text = "Class"
+        ' 
+        ' ComboBox1
+        ' 
+        ComboBox1.Font = New Font("Poppins", 9F)
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Items.AddRange(New Object() {"Select a Class", "Class A", "Class B", "Class C"})
+        ComboBox1.Location = New Point(165, 284)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(151, 34)
+        ComboBox1.TabIndex = 5
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.Location = New Point(165, 328)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(263, 41)
+        Label4.TabIndex = 6
+        Label4.Text = "Existing Students"
+        ' 
+        ' Button1
+        ' 
+        Button1.BackgroundImage = My.Resources.Resources.Log_In__316_x_219_px___6_
+        Button1.BackgroundImageLayout = ImageLayout.Zoom
+        Button1.Cursor = Cursors.Hand
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.ForeColor = Color.DarkBlue
+        Button1.Location = New Point(693, 213)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(160, 48)
+        Button1.TabIndex = 7
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' ComboBox2
+        ' 
+        ComboBox2.Font = New Font("Poppins", 9F)
+        ComboBox2.FormattingEnabled = True
+        ComboBox2.Items.AddRange(New Object() {"Filter by Class", "Class A", "Class B", "Class C"})
+        ComboBox2.Location = New Point(681, 341)
+        ComboBox2.Name = "ComboBox2"
+        ComboBox2.Size = New Size(151, 34)
+        ComboBox2.TabIndex = 8
+        ' 
         ' Form7
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        BackgroundImage = My.Resources.Resources.Log_In__1134_x_696_px___4_
+        BackgroundImageLayout = ImageLayout.Zoom
+        ClientSize = New Size(1030, 637)
         Controls.Add(ComboBox2)
         Controls.Add(Button1)
         Controls.Add(Label4)
@@ -181,8 +190,11 @@ Partial Class Form7
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(DataGridView1)
+        FormBorderStyle = FormBorderStyle.FixedToolWindow
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Form7"
-        Text = "Form7"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Modify Student Record"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()

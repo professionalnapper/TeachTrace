@@ -22,76 +22,83 @@ Partial Class Form5
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Label1 = New Label()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form5))
         Button1 = New Button()
         Button2 = New Button()
         Button3 = New Button()
         Button4 = New Button()
         SuspendLayout()
         ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(218, 79)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(338, 41)
-        Label1.TabIndex = 0
-        Label1.Text = "Welcome to TeachTrace!"
-        ' 
         ' Button1
         ' 
-        Button1.Location = New Point(234, 150)
+        Button1.BackgroundImage = My.Resources.Resources.Log_In__316_x_219_px___4_
+        Button1.BackgroundImageLayout = ImageLayout.Zoom
+        Button1.Cursor = Cursors.Hand
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.ForeColor = Color.DarkBlue
+        Button1.Location = New Point(247, 260)
         Button1.Name = "Button1"
-        Button1.Size = New Size(299, 37)
+        Button1.Size = New Size(238, 73)
         Button1.TabIndex = 1
-        Button1.Text = "View Student Records"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(234, 222)
+        Button2.BackgroundImage = My.Resources.Resources.Log_In__316_x_219_px___2_
+        Button2.BackgroundImageLayout = ImageLayout.Zoom
+        Button2.Cursor = Cursors.Hand
+        Button2.FlatStyle = FlatStyle.Flat
+        Button2.ForeColor = Color.DarkBlue
+        Button2.Location = New Point(247, 376)
         Button2.Name = "Button2"
-        Button2.Size = New Size(299, 33)
+        Button2.Size = New Size(238, 73)
         Button2.TabIndex = 2
-        Button2.Text = "Modify Student Records"
         Button2.UseVisualStyleBackColor = True
         ' 
         ' Button3
         ' 
-        Button3.Location = New Point(234, 297)
+        Button3.BackgroundImage = My.Resources.Resources.Log_In__316_x_219_px___3_
+        Button3.BackgroundImageLayout = ImageLayout.Zoom
+        Button3.Cursor = Cursors.Hand
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.ForeColor = Color.DarkBlue
+        Button3.Location = New Point(544, 260)
         Button3.Name = "Button3"
-        Button3.Size = New Size(299, 37)
+        Button3.Size = New Size(238, 73)
         Button3.TabIndex = 3
-        Button3.Text = "Monitor Attendance"
         Button3.UseVisualStyleBackColor = True
         ' 
         ' Button4
         ' 
-        Button4.Location = New Point(234, 367)
+        Button4.BackgroundImage = My.Resources.Resources.Log_In__316_x_219_px___5_
+        Button4.BackgroundImageLayout = ImageLayout.Zoom
+        Button4.Cursor = Cursors.Hand
+        Button4.FlatStyle = FlatStyle.Flat
+        Button4.ForeColor = Color.DarkBlue
+        Button4.Location = New Point(544, 376)
         Button4.Name = "Button4"
-        Button4.Size = New Size(299, 37)
+        Button4.Size = New Size(238, 73)
         Button4.TabIndex = 4
-        Button4.Text = "Back"
         Button4.UseVisualStyleBackColor = True
         ' 
         ' Form5
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        BackgroundImage = My.Resources.Resources.Log_In__1134_x_696_px___1_
+        BackgroundImageLayout = ImageLayout.Zoom
+        ClientSize = New Size(1030, 637)
         Controls.Add(Button4)
         Controls.Add(Button3)
         Controls.Add(Button2)
         Controls.Add(Button1)
-        Controls.Add(Label1)
+        FormBorderStyle = FormBorderStyle.FixedToolWindow
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Form5"
-        Text = "Form5"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Dashboard"
         ResumeLayout(False)
-        PerformLayout()
     End Sub
-
-    Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button

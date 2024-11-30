@@ -33,38 +33,40 @@ Partial Class Form4
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(239, 151)
+        Label1.Font = New Font("Poppins", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(262, 172)
         Label1.Name = "Label1"
-        Label1.Size = New Size(29, 26)
+        Label1.Size = New Size(33, 31)
         Label1.TabIndex = 0
         Label1.Text = "ID"
         ' 
         ' TextBox1
         ' 
-        TextBox1.Font = New Font("Poppins", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox1.Location = New Point(239, 179)
+        TextBox1.Font = New Font("Poppins", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TextBox1.Location = New Point(262, 201)
         TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(316, 30)
+        TextBox1.PlaceholderText = "Enter ID..."
+        TextBox1.Size = New Size(373, 34)
         TextBox1.TabIndex = 1
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(239, 233)
+        Label2.Font = New Font("Poppins", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(262, 254)
         Label2.Name = "Label2"
-        Label2.Size = New Size(107, 26)
+        Label2.Size = New Size(126, 31)
         Label2.TabIndex = 2
         Label2.Text = "Login Code"
         ' 
         ' TextBox2
         ' 
-        TextBox2.Font = New Font("Poppins", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox2.Location = New Point(239, 262)
+        TextBox2.Font = New Font("Poppins", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TextBox2.Location = New Point(262, 284)
         TextBox2.Name = "TextBox2"
         TextBox2.PasswordChar = "*"c
-        TextBox2.Size = New Size(316, 30)
+        TextBox2.PlaceholderText = "Enter login code..."
+        TextBox2.Size = New Size(373, 34)
         TextBox2.TabIndex = 3
         ' 
         ' Button1
@@ -74,9 +76,9 @@ Partial Class Form4
         Button1.Cursor = Cursors.Hand
         Button1.FlatStyle = FlatStyle.Flat
         Button1.ForeColor = Color.DarkBlue
-        Button1.Location = New Point(329, 307)
+        Button1.Location = New Point(380, 345)
         Button1.Name = "Button1"
-        Button1.Size = New Size(119, 38)
+        Button1.Size = New Size(141, 43)
         Button1.TabIndex = 4
         Button1.UseVisualStyleBackColor = True
         ' 
@@ -86,7 +88,7 @@ Partial Class Form4
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.Untitled_design__7_
         BackgroundImageLayout = ImageLayout.Zoom
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(913, 515)
         Controls.Add(Button1)
         Controls.Add(TextBox2)
         Controls.Add(Label2)

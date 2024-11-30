@@ -11,5 +11,7 @@
         ComboBox1.Items.AddRange(New String() {"Class A", "Class B", "Class C"})
         ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
         ComboBox1.SelectedIndex = 0
+
+        DataGridView1.Font = New Font("Poppins", 10, FontStyle.Regular)
     End Sub
 End Class

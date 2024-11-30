@@ -6,6 +6,9 @@ Public Class Form6
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView1.AllowUserToAddRows = False
         DataGridView1.ReadOnly = True
+        DataGridView1.Font = New Font("Poppins", 10, FontStyle.Regular)
+
+
 
         ' Initialize ComboBoxes
         ComboBox1.Items.Clear()

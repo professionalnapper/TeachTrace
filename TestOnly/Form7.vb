@@ -25,6 +25,7 @@ Public Class Form7
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         DataGridView1.AllowUserToAddRows = False
         DataGridView1.ReadOnly = True
+        DataGridView1.Font = New Font("Poppins", 10, FontStyle.Regular)
 
         ' Load initial data
         UpdateDataGridView()

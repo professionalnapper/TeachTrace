@@ -22,6 +22,7 @@ Partial Class Form8
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form8))
         Label1 = New Label()
         ComboBox1 = New ComboBox()
         DataGridView1 = New DataGridView()
@@ -37,7 +38,7 @@ Partial Class Form8
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(48, 32)
+        Label1.Location = New Point(179, 175)
         Label1.Name = "Label1"
         Label1.Size = New Size(368, 31)
         Label1.TabIndex = 0
@@ -45,18 +46,19 @@ Partial Class Form8
         ' 
         ' ComboBox1
         ' 
+        ComboBox1.Font = New Font("Poppins", 9F)
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"All Classes", "Class A", "Class B", "Class C"})
-        ComboBox1.Location = New Point(62, 83)
+        ComboBox1.Location = New Point(193, 226)
         ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(151, 28)
+        ComboBox1.Size = New Size(151, 34)
         ComboBox1.TabIndex = 1
         ' 
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {StudentName, ClassType, TimeIn, TimeOut})
-        DataGridView1.Location = New Point(62, 149)
+        DataGridView1.Location = New Point(193, 287)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
         DataGridView1.Size = New Size(653, 188)
@@ -92,23 +94,33 @@ Partial Class Form8
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(543, 371)
+        Button2.BackgroundImage = My.Resources.Resources.Log_In__316_x_219_px___6_
+        Button2.BackgroundImageLayout = ImageLayout.Zoom
+        Button2.Cursor = Cursors.Hand
+        Button2.FlatStyle = FlatStyle.Flat
+        Button2.ForeColor = Color.DarkBlue
+        Button2.Location = New Point(679, 493)
         Button2.Name = "Button2"
-        Button2.Size = New Size(172, 37)
+        Button2.Size = New Size(167, 51)
         Button2.TabIndex = 12
-        Button2.Text = "Back to Dashboard"
         Button2.UseVisualStyleBackColor = True
         ' 
         ' Form8
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        BackgroundImage = My.Resources.Resources.Log_In__1134_x_696_px___5_
+        BackgroundImageLayout = ImageLayout.Zoom
+        ClientSize = New Size(1030, 637)
         Controls.Add(Button2)
         Controls.Add(DataGridView1)
         Controls.Add(ComboBox1)
         Controls.Add(Label1)
-        Text = "Form8"
+        FormBorderStyle = FormBorderStyle.FixedToolWindow
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Name = "Form8"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Monitor Attendance"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
