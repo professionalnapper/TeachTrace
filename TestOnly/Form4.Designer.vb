@@ -22,6 +22,7 @@ Partial Class Form4
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form4))
         Label1 = New Label()
         TextBox1 = New TextBox()
         Label2 = New Label()
@@ -32,59 +33,71 @@ Partial Class Form4
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(81, 85)
+        Label1.Font = New Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(239, 151)
         Label1.Name = "Label1"
-        Label1.Size = New Size(27, 20)
+        Label1.Size = New Size(29, 26)
         Label1.TabIndex = 0
-        Label1.Text = "ID:"
+        Label1.Text = "ID"
         ' 
         ' TextBox1
         ' 
-        TextBox1.Location = New Point(142, 77)
-        TextBox1.Multiline = True
+        TextBox1.Font = New Font("Poppins", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TextBox1.Location = New Point(239, 179)
         TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(239, 35)
+        TextBox1.Size = New Size(316, 30)
         TextBox1.TabIndex = 1
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(81, 158)
+        Label2.Font = New Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(239, 233)
         Label2.Name = "Label2"
-        Label2.Size = New Size(88, 20)
+        Label2.Size = New Size(107, 26)
         Label2.TabIndex = 2
-        Label2.Text = "Login Code:"
+        Label2.Text = "Login Code"
         ' 
         ' TextBox2
         ' 
-        TextBox2.Location = New Point(198, 143)
-        TextBox2.Multiline = True
+        TextBox2.Font = New Font("Poppins", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TextBox2.Location = New Point(239, 262)
         TextBox2.Name = "TextBox2"
         TextBox2.PasswordChar = "*"c
-        TextBox2.Size = New Size(239, 35)
+        TextBox2.Size = New Size(316, 30)
         TextBox2.TabIndex = 3
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(333, 262)
+        Button1.BackgroundImage = My.Resources.Resources.Log_In__316_x_219_px_
+        Button1.BackgroundImageLayout = ImageLayout.Zoom
+        Button1.Cursor = Cursors.Hand
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.ForeColor = Color.DarkBlue
+        Button1.Location = New Point(329, 307)
         Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
+        Button1.Size = New Size(119, 38)
         Button1.TabIndex = 4
-        Button1.Text = "Login"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' Form4
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
+        BackgroundImage = My.Resources.Resources.Untitled_design__7_
+        BackgroundImageLayout = ImageLayout.Zoom
         ClientSize = New Size(800, 450)
         Controls.Add(Button1)
         Controls.Add(TextBox2)
         Controls.Add(Label2)
         Controls.Add(TextBox1)
         Controls.Add(Label1)
+        DoubleBuffered = True
+        FormBorderStyle = FormBorderStyle.FixedToolWindow
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Form4"
-        Text = "Form4"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Log In "
         ResumeLayout(False)
         PerformLayout()
     End Sub
