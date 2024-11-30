@@ -120,8 +120,38 @@ Public Class Form1
 
     Private Sub ProcessSerialData(data As String)
         Try
-            ' Expected format: "ID:123,NAME:John,SURNAME:Doe,AGE:25"
-            If data.Contains(",") Then
+            ' Check if it's a verification message
+            If data.StartsWith("MSGBOX") Then
+                Dim parts = data.Split(","c)
+                For Each part In parts
+                    Dim keyValue = part.Split(":"c)
+                    If keyValue.Length = 2 AndAlso keyValue(0).Trim().ToUpper() = "ID" Then
+                        Dim userId = keyValue(1).Trim()
+                        If userId.Equals("NOTFOUND", StringComparison.OrdinalIgnoreCase) Then
+                            MessageBox.Show("ID IS NOT FOUND", "Verification Result", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Else
+                            MessageBox.Show($"ID: {userId} is found", "Verification Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        End If
+                        Return
+                    End If
+                Next
+            End If
+
+            ' Check if it's an attendance message
+            If data.StartsWith("ATTENDANCE") Then
+                Dim parts = data.Split(","c)
+                For Each part In parts
+                    Dim keyValue = part.Split(":"c)
+                    If keyValue.Length = 2 AndAlso keyValue(0).Trim().ToUpper() = "ID" Then
+                        Dim userId = keyValue(1).Trim()
+                        MessageBox.Show($"ID: {userId} Attendance Recorded", "Attendance Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return
+                    End If
+                Next
+            End If
+
+            ' Handle regular data
+            If data.Contains(",") AndAlso Not data.StartsWith("MSGBOX") AndAlso Not data.StartsWith("ATTENDANCE") Then
                 Dim parts = data.Split(","c)
                 For Each part In parts
                     Dim keyValue = part.Split(":"c)
@@ -131,13 +161,11 @@ Public Class Form1
                                 TBox_Name.Text = keyValue(1).Trim()
                             Case "SURNAME"
                                 TBox_Surname.Text = keyValue(1).Trim()
-                            Case "AGE"
-                                TBox_Age.Text = keyValue(1).Trim()
                         End Select
                     End If
                 Next
 
-                ' Optionally auto-save the data
+                ' Process attendance data only if all fields are valid
                 If ValidateInputs() Then
                     AddData_Click(Nothing, Nothing)
                 End If

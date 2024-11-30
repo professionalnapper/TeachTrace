@@ -60,6 +60,7 @@ Partial Class Form4
         TextBox2.Location = New Point(198, 143)
         TextBox2.Multiline = True
         TextBox2.Name = "TextBox2"
+        TextBox2.PasswordChar = "*"c
         TextBox2.Size = New Size(239, 35)
         TextBox2.TabIndex = 3
         ' 
