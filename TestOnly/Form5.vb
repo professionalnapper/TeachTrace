@@ -18,8 +18,27 @@
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim form1 As New Form1()
-        form1.Show()
-        Me.Hide()
+        Dim form1 As New Form9
+        Form9.Show()
+        Hide()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+        ' Show confirmation message box
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to log out?",
+                                               "Logout Confirmation",
+                                               MessageBoxButtons.YesNo,
+                                               MessageBoxIcon.Question)
+
+        ' If user clicks Yes, proceed with logout
+        If result = DialogResult.Yes Then
+            ' Close current form
+            Me.Hide()
+            ' Show login form
+            Dim form4 As New Form4()  ' Replace Form1 with your actual login form name
+            form4.Show()
+        End If
+        ' If user clicks No, nothing happens and they stay on current form
     End Sub
 End Class

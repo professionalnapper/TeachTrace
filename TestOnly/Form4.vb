@@ -2,10 +2,10 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ' Check if the password is correct
         If TextBox2.Text = "Nem00yp" Then
-            ' Create an instance of Form1
-            Dim form1 As New Form1()
+            ' Create an instance of Form9
+            Dim form9 As New Form9()
             ' Show Form1
-            form1.Show()
+            form9.Show()
             ' Hide the current form
             Me.Hide()
         Else
