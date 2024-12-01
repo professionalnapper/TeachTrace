@@ -30,7 +30,6 @@ Partial Class Form7
         TimeInColumn = New DataGridViewTextBoxColumn()
         DateInColumn = New DataGridViewTextBoxColumn()
         ClassType = New DataGridViewTextBoxColumn()
-        Label1 = New Label()
         Label2 = New Label()
         TextBox1 = New TextBox()
         Label3 = New Label()
@@ -93,23 +92,14 @@ Partial Class Form7
         ClassType.Name = "ClassType"
         ClassType.Width = 125
         ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(26, 18)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(360, 41)
-        Label1.TabIndex = 1
-        Label1.Text = "Modify Student Records"
-        ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Poppins", 10.2F)
+        Label2.BackColor = Color.Lavender
+        Label2.Font = New Font("Microsoft Sans Serif", 10.2F)
         Label2.Location = New Point(158, 170)
         Label2.Name = "Label2"
-        Label2.Size = New Size(104, 30)
+        Label2.Size = New Size(92, 20)
         Label2.TabIndex = 2
         Label2.Text = "First Name"
         ' 
@@ -124,26 +114,28 @@ Partial Class Form7
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Poppins", 10.2F)
+        Label3.BackColor = Color.Lavender
+        Label3.Font = New Font("Microsoft Sans Serif", 10.2F)
         Label3.Location = New Point(158, 254)
         Label3.Name = "Label3"
-        Label3.Size = New Size(59, 30)
+        Label3.Size = New Size(52, 20)
         Label3.TabIndex = 4
         Label3.Text = "Class"
         ' 
         ' ComboBox1
         ' 
-        ComboBox1.Font = New Font("Poppins", 9F)
+        ComboBox1.Font = New Font("Microsoft Sans Serif", 9F)
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"Select a Class", "Class A", "Class B", "Class C"})
         ComboBox1.Location = New Point(165, 284)
         ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(151, 34)
+        ComboBox1.Size = New Size(151, 26)
         ComboBox1.TabIndex = 5
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
+        Label4.BackColor = Color.Lavender
         Label4.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label4.Location = New Point(165, 328)
         Label4.Name = "Label4"
@@ -166,12 +158,12 @@ Partial Class Form7
         ' 
         ' ComboBox2
         ' 
-        ComboBox2.Font = New Font("Poppins", 9F)
+        ComboBox2.Font = New Font("Microsoft Sans Serif", 9F)
         ComboBox2.FormattingEnabled = True
         ComboBox2.Items.AddRange(New Object() {"Filter by Class", "Class A", "Class B", "Class C"})
         ComboBox2.Location = New Point(681, 341)
         ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(151, 34)
+        ComboBox2.Size = New Size(151, 26)
         ComboBox2.TabIndex = 8
         ' 
         ' Form7
@@ -188,7 +180,6 @@ Partial Class Form7
         Controls.Add(Label3)
         Controls.Add(TextBox1)
         Controls.Add(Label2)
-        Controls.Add(Label1)
         Controls.Add(DataGridView1)
         FormBorderStyle = FormBorderStyle.FixedToolWindow
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -201,7 +192,6 @@ Partial Class Form7
     End Sub
 
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label3 As Label

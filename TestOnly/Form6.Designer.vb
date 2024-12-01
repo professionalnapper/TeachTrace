@@ -23,7 +23,6 @@ Partial Class Form6
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form6))
-        Label1 = New Label()
         Label2 = New Label()
         ComboBox1 = New ComboBox()
         Label3 = New Label()
@@ -39,54 +38,46 @@ Partial Class Form6
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(80, 58)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(325, 41)
-        Label1.TabIndex = 0
-        Label1.Text = "View Student Records"
-        ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Poppins", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.BackColor = Color.Lavender
+        Label2.Font = New Font("Microsoft Sans Serif", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.Location = New Point(158, 185)
         Label2.Name = "Label2"
-        Label2.Size = New Size(96, 36)
+        Label2.Size = New Size(88, 25)
         Label2.TabIndex = 1
         Label2.Text = "Sort by:"
         ' 
         ' ComboBox1
         ' 
-        ComboBox1.Font = New Font("Poppins", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        ComboBox1.Font = New Font("Microsoft Sans Serif", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"Name", "Class"})
         ComboBox1.Location = New Point(270, 185)
         ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(151, 34)
+        ComboBox1.Size = New Size(151, 26)
         ComboBox1.TabIndex = 2
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Poppins", 12F, FontStyle.Bold)
+        Label3.BackColor = Color.Lavender
+        Label3.Font = New Font("Microsoft Sans Serif", 12.0F, FontStyle.Bold)
         Label3.Location = New Point(521, 184)
         Label3.Name = "Label3"
-        Label3.Size = New Size(170, 36)
+        Label3.Size = New Size(157, 25)
         Label3.TabIndex = 3
         Label3.Text = "Filter by Class:"
         ' 
         ' ComboBox2
         ' 
-        ComboBox2.Font = New Font("Poppins", 9F)
+        ComboBox2.Font = New Font("Microsoft Sans Serif", 9.0F)
         ComboBox2.FormattingEnabled = True
         ComboBox2.Items.AddRange(New Object() {"Class A", "Class B", "Class C"})
         ComboBox2.Location = New Point(721, 188)
         ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(151, 34)
+        ComboBox2.Size = New Size(151, 26)
         ComboBox2.TabIndex = 4
         ' 
         ' DataGridView1
@@ -157,7 +148,7 @@ Partial Class Form6
         ' 
         ' Form6
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.Log_In__1134_x_696_px___3_
         BackgroundImageLayout = ImageLayout.Zoom
@@ -168,7 +159,6 @@ Partial Class Form6
         Controls.Add(Label3)
         Controls.Add(ComboBox1)
         Controls.Add(Label2)
-        Controls.Add(Label1)
         FormBorderStyle = FormBorderStyle.FixedToolWindow
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Form6"
@@ -178,8 +168,6 @@ Partial Class Form6
         ResumeLayout(False)
         PerformLayout()
     End Sub
-
-    Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label3 As Label
