@@ -33,40 +33,40 @@ Partial Class Form4
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Poppins", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Font = New Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.Location = New Point(262, 172)
         Label1.Name = "Label1"
-        Label1.Size = New Size(33, 31)
+        Label1.Size = New Size(29, 22)
         Label1.TabIndex = 0
         Label1.Text = "ID"
         ' 
         ' TextBox1
         ' 
-        TextBox1.Font = New Font("Poppins", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TextBox1.Font = New Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TextBox1.Location = New Point(262, 201)
         TextBox1.Name = "TextBox1"
         TextBox1.PlaceholderText = "Enter ID..."
-        TextBox1.Size = New Size(373, 34)
+        TextBox1.Size = New Size(373, 28)
         TextBox1.TabIndex = 1
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Poppins", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Font = New Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.Location = New Point(262, 254)
         Label2.Name = "Label2"
-        Label2.Size = New Size(126, 31)
+        Label2.Size = New Size(112, 22)
         Label2.TabIndex = 2
         Label2.Text = "Login Code"
         ' 
         ' TextBox2
         ' 
-        TextBox2.Font = New Font("Poppins", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TextBox2.Font = New Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TextBox2.Location = New Point(262, 284)
         TextBox2.Name = "TextBox2"
-        TextBox2.PasswordChar = "*"c
+        TextBox2.PasswordChar = "•"c
         TextBox2.PlaceholderText = "Enter login code..."
-        TextBox2.Size = New Size(373, 34)
+        TextBox2.Size = New Size(373, 28)
         TextBox2.TabIndex = 3
         ' 
         ' Button1

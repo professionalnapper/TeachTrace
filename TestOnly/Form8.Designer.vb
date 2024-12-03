@@ -26,10 +26,11 @@ Partial Class Form8
         Label1 = New Label()
         ComboBox1 = New ComboBox()
         DataGridView1 = New DataGridView()
-        StudentName = New DataGridViewTextBoxColumn()
-        ClassType = New DataGridViewTextBoxColumn()
+        columnName = New DataGridViewTextBoxColumn()
+        Surname = New DataGridViewTextBoxColumn()
         TimeIn = New DataGridViewTextBoxColumn()
-        TimeOut = New DataGridViewTextBoxColumn()
+        DateToday = New DataGridViewTextBoxColumn()
+        Section = New DataGridViewTextBoxColumn()
         Button2 = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -40,57 +41,64 @@ Partial Class Form8
         Label1.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.Location = New Point(179, 175)
         Label1.Name = "Label1"
-        Label1.Size = New Size(368, 31)
+        Label1.Size = New Size(222, 31)
         Label1.TabIndex = 0
-        Label1.Text = "Today's Attendance (11/23/2024)"
+        Label1.Text = "Today's Attendance"
         ' 
         ' ComboBox1
         ' 
-        ComboBox1.Font = New Font("Poppins", 9F)
+        ComboBox1.Font = New Font("Microsoft Sans Serif", 9.0F)
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"All Classes", "Class A", "Class B", "Class C"})
         ComboBox1.Location = New Point(193, 226)
         ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(151, 34)
+        ComboBox1.Size = New Size(151, 26)
         ComboBox1.TabIndex = 1
         ' 
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {StudentName, ClassType, TimeIn, TimeOut})
-        DataGridView1.Location = New Point(193, 287)
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {columnName, Surname, TimeIn, DateToday, Section})
+        DataGridView1.Location = New Point(232, 272)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(653, 188)
+        DataGridView1.Size = New Size(504, 188)
         DataGridView1.TabIndex = 2
         ' 
-        ' StudentName
+        ' columnName
         ' 
-        StudentName.HeaderText = "Student Name"
-        StudentName.MinimumWidth = 6
-        StudentName.Name = "StudentName"
-        StudentName.Width = 150
+        columnName.HeaderText = "First Name"
+        columnName.MinimumWidth = 6
+        columnName.Name = "columnName"
+        columnName.Width = 109
         ' 
-        ' ClassType
+        ' Surname
         ' 
-        ClassType.HeaderText = "Class"
-        ClassType.MinimumWidth = 6
-        ClassType.Name = "ClassType"
-        ClassType.Width = 150
+        Surname.HeaderText = "Surname"
+        Surname.MinimumWidth = 6
+        Surname.Name = "Surname"
+        Surname.Width = 90
         ' 
         ' TimeIn
         ' 
         TimeIn.HeaderText = "Time-in"
         TimeIn.MinimumWidth = 6
         TimeIn.Name = "TimeIn"
-        TimeIn.Width = 150
+        TimeIn.Width = 90
         ' 
-        ' TimeOut
+        ' DateToday
         ' 
-        TimeOut.HeaderText = "Time-out"
-        TimeOut.MinimumWidth = 6
-        TimeOut.Name = "TimeOut"
-        TimeOut.Width = 150
+        DateToday.HeaderText = "Date"
+        DateToday.MinimumWidth = 6
+        DateToday.Name = "DateToday"
+        DateToday.Width = 90
+        ' 
+        ' Section
+        ' 
+        Section.HeaderText = "Class"
+        Section.MinimumWidth = 6
+        Section.Name = "Section"
+        Section.Width = 72
         ' 
         ' Button2
         ' 
@@ -129,9 +137,10 @@ Partial Class Form8
     Friend WithEvents Label1 As Label
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents StudentName As DataGridViewTextBoxColumn
-    Friend WithEvents ClassType As DataGridViewTextBoxColumn
-    Friend WithEvents TimeIn As DataGridViewTextBoxColumn
-    Friend WithEvents TimeOut As DataGridViewTextBoxColumn
     Friend WithEvents Button2 As Button
+    Friend WithEvents columnName As DataGridViewTextBoxColumn
+    Friend WithEvents Surname As DataGridViewTextBoxColumn
+    Friend WithEvents TimeIn As DataGridViewTextBoxColumn
+    Friend WithEvents DateToday As DataGridViewTextBoxColumn
+    Friend WithEvents Section As DataGridViewTextBoxColumn
 End Class

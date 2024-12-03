@@ -28,13 +28,12 @@ Partial Class Form6
         Label3 = New Label()
         ComboBox2 = New ComboBox()
         DataGridView1 = New DataGridView()
+        Button1 = New Button()
+        UserID = New DataGridViewTextBoxColumn()
         NameColumn = New DataGridViewTextBoxColumn()
         SurnameColumn = New DataGridViewTextBoxColumn()
         AgeColumn = New DataGridViewTextBoxColumn()
-        TimeInColumn = New DataGridViewTextBoxColumn()
         DateInColumn = New DataGridViewTextBoxColumn()
-        ClassType = New DataGridViewTextBoxColumn()
-        Button1 = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -42,7 +41,7 @@ Partial Class Form6
         ' 
         Label2.AutoSize = True
         Label2.BackColor = Color.Lavender
-        Label2.Font = New Font("Microsoft Sans Serif", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.Location = New Point(158, 185)
         Label2.Name = "Label2"
         Label2.Size = New Size(88, 25)
@@ -51,7 +50,7 @@ Partial Class Form6
         ' 
         ' ComboBox1
         ' 
-        ComboBox1.Font = New Font("Microsoft Sans Serif", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        ComboBox1.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"Name", "Class"})
         ComboBox1.Location = New Point(270, 185)
@@ -63,7 +62,7 @@ Partial Class Form6
         ' 
         Label3.AutoSize = True
         Label3.BackColor = Color.Lavender
-        Label3.Font = New Font("Microsoft Sans Serif", 12.0F, FontStyle.Bold)
+        Label3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold)
         Label3.Location = New Point(521, 184)
         Label3.Name = "Label3"
         Label3.Size = New Size(157, 25)
@@ -72,9 +71,9 @@ Partial Class Form6
         ' 
         ' ComboBox2
         ' 
-        ComboBox2.Font = New Font("Microsoft Sans Serif", 9.0F)
+        ComboBox2.Font = New Font("Microsoft Sans Serif", 9F)
         ComboBox2.FormattingEnabled = True
-        ComboBox2.Items.AddRange(New Object() {"Class A", "Class B", "Class C"})
+        ComboBox2.Items.AddRange(New Object() {"All", "Class A", "Class B", "Class C"})
         ComboBox2.Location = New Point(721, 188)
         ComboBox2.Name = "ComboBox2"
         ComboBox2.Size = New Size(151, 26)
@@ -83,55 +82,13 @@ Partial Class Form6
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {NameColumn, SurnameColumn, AgeColumn, TimeInColumn, DateInColumn, ClassType})
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {UserID, NameColumn, SurnameColumn, AgeColumn, DateInColumn})
         DataGridView1.GridColor = Color.DarkBlue
-        DataGridView1.Location = New Point(158, 257)
+        DataGridView1.Location = New Point(197, 251)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(727, 195)
+        DataGridView1.Size = New Size(653, 195)
         DataGridView1.TabIndex = 5
-        ' 
-        ' NameColumn
-        ' 
-        NameColumn.HeaderText = "Name"
-        NameColumn.MinimumWidth = 6
-        NameColumn.Name = "NameColumn"
-        NameColumn.Width = 125
-        ' 
-        ' SurnameColumn
-        ' 
-        SurnameColumn.HeaderText = "Surname"
-        SurnameColumn.MinimumWidth = 6
-        SurnameColumn.Name = "SurnameColumn"
-        SurnameColumn.Width = 125
-        ' 
-        ' AgeColumn
-        ' 
-        AgeColumn.HeaderText = "Age"
-        AgeColumn.MinimumWidth = 6
-        AgeColumn.Name = "AgeColumn"
-        AgeColumn.Width = 50
-        ' 
-        ' TimeInColumn
-        ' 
-        TimeInColumn.HeaderText = "Time-in"
-        TimeInColumn.MinimumWidth = 6
-        TimeInColumn.Name = "TimeInColumn"
-        TimeInColumn.Width = 125
-        ' 
-        ' DateInColumn
-        ' 
-        DateInColumn.HeaderText = "Date"
-        DateInColumn.MinimumWidth = 6
-        DateInColumn.Name = "DateInColumn"
-        DateInColumn.Width = 125
-        ' 
-        ' ClassType
-        ' 
-        ClassType.HeaderText = "Class"
-        ClassType.MinimumWidth = 6
-        ClassType.Name = "ClassType"
-        ClassType.Width = 125
         ' 
         ' Button1
         ' 
@@ -146,9 +103,44 @@ Partial Class Form6
         Button1.TabIndex = 6
         Button1.UseVisualStyleBackColor = True
         ' 
+        ' UserID
+        ' 
+        UserID.HeaderText = "User ID"
+        UserID.MinimumWidth = 6
+        UserID.Name = "UserID"
+        UserID.Width = 120
+        ' 
+        ' NameColumn
+        ' 
+        NameColumn.HeaderText = "Name"
+        NameColumn.MinimumWidth = 6
+        NameColumn.Name = "NameColumn"
+        NameColumn.Width = 120
+        ' 
+        ' SurnameColumn
+        ' 
+        SurnameColumn.HeaderText = "Surname"
+        SurnameColumn.MinimumWidth = 6
+        SurnameColumn.Name = "SurnameColumn"
+        SurnameColumn.Width = 120
+        ' 
+        ' AgeColumn
+        ' 
+        AgeColumn.HeaderText = "Class"
+        AgeColumn.MinimumWidth = 6
+        AgeColumn.Name = "AgeColumn"
+        AgeColumn.Width = 120
+        ' 
+        ' DateInColumn
+        ' 
+        DateInColumn.HeaderText = "Date"
+        DateInColumn.MinimumWidth = 6
+        DateInColumn.Name = "DateInColumn"
+        DateInColumn.Width = 120
+        ' 
         ' Form6
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.Log_In__1134_x_696_px___3_
         BackgroundImageLayout = ImageLayout.Zoom
@@ -174,10 +166,9 @@ Partial Class Form6
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Button1 As Button
+    Friend WithEvents UserID As DataGridViewTextBoxColumn
     Friend WithEvents NameColumn As DataGridViewTextBoxColumn
     Friend WithEvents SurnameColumn As DataGridViewTextBoxColumn
     Friend WithEvents AgeColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TimeInColumn As DataGridViewTextBoxColumn
     Friend WithEvents DateInColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ClassType As DataGridViewTextBoxColumn
 End Class
