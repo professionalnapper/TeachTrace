@@ -122,7 +122,7 @@ Partial Class Form7
         ' 
         ' ComboBox1
         ' 
-        ComboBox1.Font = New Font("Microsoft Sans Serif", 9.0F)
+        ComboBox1.Font = New Font("Microsoft Sans Serif", 9F)
         ComboBox1.FormattingEnabled = True
         ComboBox1.Items.AddRange(New Object() {"Select a Class", "Class A", "Class B", "Class C"})
         ComboBox1.Location = New Point(158, 277)
@@ -134,7 +134,7 @@ Partial Class Form7
         ' 
         Label4.AutoSize = True
         Label4.BackColor = Color.Lavender
-        Label4.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label4.Location = New Point(165, 328)
         Label4.Name = "Label4"
         Label4.Size = New Size(263, 41)
@@ -156,7 +156,7 @@ Partial Class Form7
         ' 
         ' ComboBox2
         ' 
-        ComboBox2.Font = New Font("Microsoft Sans Serif", 9.0F)
+        ComboBox2.Font = New Font("Microsoft Sans Serif", 9F)
         ComboBox2.FormattingEnabled = True
         ComboBox2.Items.AddRange(New Object() {"All", "Class A", "Class B", "Class C"})
         ComboBox2.Location = New Point(681, 341)

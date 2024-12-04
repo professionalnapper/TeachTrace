@@ -51,17 +51,18 @@ Partial Class Form9
         ' TBox_Class
         ' 
         TBox_Class.Font = New Font("Microsoft Sans Serif", 11F)
-        TBox_Class.Location = New Point(365, 314)
+        TBox_Class.Location = New Point(365, 334)
+        TBox_Class.Multiline = True
         TBox_Class.Name = "TBox_Class"
-        TBox_Class.Size = New Size(454, 28)
-        TBox_Class.TabIndex = 20
+        TBox_Class.Size = New Size(454, 35)
+        TBox_Class.TabIndex = 15
         ' 
         ' ClassType
         ' 
         ClassType.AutoSize = True
         ClassType.BackColor = Color.FromArgb(CByte(239), CByte(239), CByte(252))
         ClassType.Font = New Font("Microsoft Sans Serif", 11F)
-        ClassType.Location = New Point(207, 314)
+        ClassType.Location = New Point(207, 337)
         ClassType.Name = "ClassType"
         ClassType.Size = New Size(55, 24)
         ClassType.TabIndex = 19
@@ -95,7 +96,7 @@ Partial Class Form9
         ' TBox_Surname
         ' 
         TBox_Surname.Font = New Font("Microsoft Sans Serif", 11F)
-        TBox_Surname.Location = New Point(365, 255)
+        TBox_Surname.Location = New Point(365, 275)
         TBox_Surname.Multiline = True
         TBox_Surname.Name = "TBox_Surname"
         TBox_Surname.Size = New Size(454, 35)
@@ -104,7 +105,7 @@ Partial Class Form9
         ' TBox_Name
         ' 
         TBox_Name.Font = New Font("Microsoft Sans Serif", 11F)
-        TBox_Name.Location = New Point(365, 200)
+        TBox_Name.Location = New Point(365, 220)
         TBox_Name.Multiline = True
         TBox_Name.Name = "TBox_Name"
         TBox_Name.Size = New Size(454, 35)
@@ -115,7 +116,7 @@ Partial Class Form9
         Surname.AutoSize = True
         Surname.BackColor = Color.FromArgb(CByte(239), CByte(239), CByte(252))
         Surname.Font = New Font("Microsoft Sans Serif", 11F)
-        Surname.Location = New Point(207, 256)
+        Surname.Location = New Point(207, 278)
         Surname.Name = "Surname"
         Surname.Size = New Size(87, 24)
         Surname.TabIndex = 12
@@ -126,7 +127,7 @@ Partial Class Form9
         lblName.AutoSize = True
         lblName.BackColor = Color.FromArgb(CByte(239), CByte(239), CByte(252))
         lblName.Font = New Font("Microsoft Sans Serif", 11F)
-        lblName.Location = New Point(207, 199)
+        lblName.Location = New Point(207, 223)
         lblName.Name = "lblName"
         lblName.Size = New Size(101, 24)
         lblName.TabIndex = 11
@@ -134,10 +135,12 @@ Partial Class Form9
         ' 
         ' Tbox_UserId
         ' 
+        Tbox_UserId.Enabled = False
         Tbox_UserId.Font = New Font("Microsoft Sans Serif", 11F)
         Tbox_UserId.Location = New Point(365, 159)
         Tbox_UserId.Multiline = True
         Tbox_UserId.Name = "Tbox_UserId"
+        Tbox_UserId.ReadOnly = True
         Tbox_UserId.Size = New Size(454, 35)
         Tbox_UserId.TabIndex = 23
         ' 
@@ -146,7 +149,7 @@ Partial Class Form9
         Label1.AutoSize = True
         Label1.BackColor = Color.FromArgb(CByte(239), CByte(239), CByte(252))
         Label1.Font = New Font("Microsoft Sans Serif", 11F)
-        Label1.Location = New Point(207, 158)
+        Label1.Location = New Point(207, 162)
         Label1.Name = "Label1"
         Label1.Size = New Size(66, 24)
         Label1.TabIndex = 22
